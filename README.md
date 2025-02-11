@@ -38,7 +38,7 @@ Welcome to the **Nurse Responder App**! This is a **cross-platform application**
 - **SQLDelight:** Local database for offline functionality.
 
 ### Analytics & Visualization
-- **Chart.js:** Interactive charts for performance metrics.
+- **Chart:** Interactive charts for performance metrics.
 - **Firebase Analytics:** Monitor app usage and performance.
 
 ---

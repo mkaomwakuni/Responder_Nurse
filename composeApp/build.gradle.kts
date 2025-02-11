@@ -3,10 +3,14 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.multiplatform)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.buildConfig)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -34,18 +38,49 @@ kotlin {
         val desktopMain by getting
         
         androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
+            implementation(libs.material)
+            implementation(libs.androidx.appcompat)
+            implementation(libs.androidx.activityCompose)
+            implementation(libs.compose.uitooling)
+            implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
+            implementation(compose.animation)
             implementation(compose.material)
-            implementation(compose.ui)
+            implementation(compose.material3)
+            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.coil)
+            implementation(libs.napier)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.insetsx)
+            implementation(libs.ktor.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.composeIcons.featherIcons)
+            implementation(libs.composeIcons.evaIcons)
+            implementation(libs.composeIcons.octicons)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.multiplatformSettings)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.tabNavigator)
+            implementation(libs.voyager.transitions)
+            implementation(libs.voyager.koin)
+            implementation(libs.uri.kmp)
+            implementation(libs.stately.common)
+            implementation(libs.coil)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.ktor)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -56,12 +91,12 @@ kotlin {
 
 android {
     namespace = "est.mkao.emergency.response"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "est.mkao.emergency.response"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        minSdk = 26
+        targetSdk =  34
         versionCode = 1
         versionName = "1.0"
     }
@@ -72,18 +107,35 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
         }
     }
+
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/androidMain/res", "src/commonMain/resources")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    ksp(libs.room.compiler)
+}
+
 dependencies {
     debugImplementation(compose.uiTooling)
 }
+
+composeCompiler { enableStrongSkippingMode = true }
 
 compose.desktop {
     application {
