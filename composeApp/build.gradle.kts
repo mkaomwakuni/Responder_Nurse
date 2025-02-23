@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.room)
 }
 
@@ -127,9 +126,6 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
-dependencies {
-    ksp(libs.room.compiler)
-}
 
 dependencies {
     debugImplementation(compose.uiTooling)
