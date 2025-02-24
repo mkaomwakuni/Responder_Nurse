@@ -1,6 +1,6 @@
 [versions]
 agp = "8.3.1"
-kotlin = "2.0.0"
+kotlin = "2.0.20"
 compose = "1.6.11"
 coil = "3.0.0-alpha08"
 androidx-appcompat = "1.7.0"
@@ -20,17 +20,24 @@ koin-compose = "1.1.5"
 spotless = "6.25.0"
 ktfmt = "0.44"
 statelyCommon = "2.1.0"
+uiTooling = "1.5.1"
 voyager = "1.0.0"
 moko-permissions = "0.18.0"
 kotlinx-datetime = "0.6.1"
 uri-kmp = "0.0.18"
 room = "2.7.0-alpha13"
 sqlite = "2.5.0-SNAPSHOT"
+uiToolingPreviewAndroid = "1.7.8"
+uiTextAndroid = "1.7.8"
+foundationAndroid = "1.7.8"
 
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "uiTooling" }
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiTooling" }
+androidx-ui-tooling-v151 = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
 compose-uitooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-uitooling" }
 coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil"}
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil"}
@@ -68,6 +75,9 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-runtime-android = { module = "androidx.room:room-runtime-android", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
+androidx-ui-text-android = { group = "androidx.compose.ui", name = "ui-text-android", version.ref = "uiTextAndroid" }
+androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
 
 [plugins]
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
