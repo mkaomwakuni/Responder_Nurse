@@ -53,7 +53,7 @@ fun HomeScreen() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            val filters = listOf("All", "Open", "Closed", "Draft")
+            val filters = listOf("All", "Open", "Closed")
             filters.forEach { filter ->
                 Chip(filter)
             }
