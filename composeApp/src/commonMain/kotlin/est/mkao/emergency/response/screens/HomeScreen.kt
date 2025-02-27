@@ -42,7 +42,6 @@ fun HomeScreen() {
             }
         }
 
-
         Spacer(modifier = Modifier.height(8.dp))
 
         // Filter Chips Row
@@ -137,7 +136,6 @@ fun IncidentItem(incident: Incident) {
     }
 }
 
-
 data class Incident(
     val id: String,
     val location: String,
@@ -149,5 +147,3 @@ val incidents = listOf(
     Incident("INC-0002", "San Mateo, CA", "Open"),
     Incident("INC-0003", "San Jose, CA", "Closed")
 )
-
-
