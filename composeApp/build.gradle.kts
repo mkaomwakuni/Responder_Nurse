@@ -19,7 +19,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,12 +30,12 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     jvm("desktop")
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(libs.material)
             implementation(libs.androidx.appcompat)
@@ -44,9 +44,6 @@ kotlin {
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.koin.android)
-
-
-
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -154,3 +151,5 @@ compose.desktop {
         }
     }
 }
+
+
