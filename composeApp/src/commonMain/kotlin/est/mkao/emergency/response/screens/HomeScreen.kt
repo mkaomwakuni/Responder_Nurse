@@ -104,6 +104,7 @@ fun Chip(text: String) {
     }
 }
 
+
 @Composable
 fun IncidentItem(incident: Incident) {
     Card(
