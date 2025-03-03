@@ -80,18 +80,11 @@ kotlin {
             implementation(libs.coil)
             implementation(libs.coil.compose)
             implementation(libs.coil.ktor)
-
-
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
         }
-    }
-    dependencies {
-        debugImplementation("androidx.compose.ui:ui-tooling:1.5.1")
-        implementation("androidx.compose.ui:ui-tooling:1.5.1")
-        implementation("androidx.compose.ui:ui-tooling-preview:1.5.1")
     }
 }
 
@@ -128,14 +121,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-dependencies {
-    implementation(libs.androidx.ui.tooling.preview.android)
-    implementation(libs.androidx.ui.text.android)
-    implementation(libs.androidx.foundation.android)
-}
 
 room {
     schemaDirectory("$projectDir/schemas")
+}
+
+
+dependencies {
+    debugImplementation(compose.uiTooling)
 }
 
 composeCompiler { enableStrongSkippingMode = true }
